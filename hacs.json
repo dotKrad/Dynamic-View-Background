@@ -1,5 +1,5 @@
 {
-    "name": "Boilerplate Card",
-    "render_readme": true,
-    "filename": "boilerplate-card.js"
+  "name": "Dynamic View Background Card",
+  "render_readme": true,
+  "filename": "dynamic-view-background-card.js"
 }
