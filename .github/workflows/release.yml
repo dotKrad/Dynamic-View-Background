@@ -14,7 +14,6 @@ jobs:
       # Build
       - name: Build the file
         run: |
-          cd /home/runner/work/dynamic-view-background-card/dynamic-view-background-card
           npm install
           npm run build
 
