@@ -67,10 +67,13 @@ export class DynamicViewBackgroundCard extends LitElement {
 
     /**/
     if (obj !== null && obj !== undefined && this._config.entity !== undefined && this._config.entity !== null) {
-      const w = `&w=${obj.clientWidth}`;
-      const h = `&h=${obj.clientHeight}`;
+      //const url = `${this.hass.states[this._config.entity].state}&fit=crop${w}${h}`;
+      const url = `${this.hass.states[this._config.entity].state}`
+        .replace('{{w}}', obj.clientWidth.toString())
+        .replace('{{h}}', obj.clientHeight.toString());
 
-      const url = `${this.hass.states[this._config.entity].state}&fit=crop${w}${h}`;
+      console.log(url);
+
       obj.style.backgroundImage = `url('${url}')`;
 
       obj.style.backgroundRepeat = 'no-repeat';
