@@ -72,8 +72,6 @@ export class DynamicViewBackgroundCard extends LitElement {
         .replace('{{w}}', obj.clientWidth.toString())
         .replace('{{h}}', obj.clientHeight.toString());
 
-      console.log(url);
-
       obj.style.backgroundImage = `url('${url}')`;
 
       obj.style.backgroundRepeat = 'no-repeat';
