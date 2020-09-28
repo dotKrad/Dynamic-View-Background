@@ -1,4 +1,4 @@
-import { LitElement, customElement, property, CSSResult, TemplateResult, css } from 'lit-element';
+import { LitElement, customElement, property, CSSResult, TemplateResult, css, PropertyValues } from 'lit-element';
 import { HomeAssistant, LovelaceCardEditor, getLovelace } from 'custom-card-helpers';
 
 import './editor';
@@ -51,6 +51,22 @@ export class DynamicViewBackgroundCard extends LitElement {
       name: 'Dynamic View Background',
       ...config,
     };
+  }
+
+  protected shouldUpdate(changedProps: PropertyValues): boolean {
+    //update on config changed
+    if (changedProps.has('_config')) {
+      return true;
+    }
+
+    const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
+    const newHass = this.hass;
+    const entity = this._config.entity;
+
+    //Update only on state change
+    if (oldHass && entity && oldHass.states[entity].state !== newHass.states[entity].state) return true;
+
+    return false;
   }
 
   protected render(): TemplateResult | void {
