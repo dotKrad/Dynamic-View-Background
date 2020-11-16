@@ -52,6 +52,14 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
     return false;
   }
 
+  get _debug(): boolean {
+    if (this._config) {
+      return this._config.debug || false;
+    }
+
+    return false;
+  }
+
   get _show_error(): boolean {
     if (this._config) {
       return this._config.show_error || false;
@@ -94,6 +102,13 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
 
     return html`
       <div class="card-config">
+        <ha-switch
+          aria-label=${`Toggle debug ${this._debug ? 'off' : 'on'}`}
+          .checked=${this._debug !== false}
+          .configValue=${'debug'}
+          @change=${this._valueChanged}
+          >Debug?</ha-switch
+        >
         <div class="option" @click=${this._toggleOption} .option=${'required'}>
           <div class="row">
             <ha-icon .icon=${`mdi:${options.required.icon}`}></ha-icon>

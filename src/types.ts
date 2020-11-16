@@ -4,6 +4,7 @@ import { ActionConfig, LovelaceCardConfig } from 'custom-card-helpers';
 export interface DynamicViewBackgroundCardConfig extends LovelaceCardConfig {
   type: string;
   name?: string;
+  debug?: boolean;
   show_warning?: boolean;
   show_error?: boolean;
   test_gui?: boolean;

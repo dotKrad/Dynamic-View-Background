@@ -1,4 +1,4 @@
-import { LitElement, customElement, property, CSSResult, TemplateResult, css, PropertyValues } from 'lit-element';
+import { LitElement, html, customElement, property, CSSResult, TemplateResult, css, PropertyValues } from 'lit-element';
 import { HomeAssistant, LovelaceCardEditor, getLovelace } from 'custom-card-helpers';
 
 import './editor';
@@ -92,6 +92,12 @@ export class DynamicViewBackgroundCard extends LitElement {
 
       obj.style.backgroundRepeat = 'no-repeat';
       obj.style.backgroundSize = '100%';
+    }
+    if (this._config.debug) {
+      return html`
+        <hui-warning>Width: ${obj.clientWidth.toString()}</hui-warning>
+        <hui-warning>Height: ${obj.clientHeight.toString()}</hui-warning>
+      `;
     }
   }
 
