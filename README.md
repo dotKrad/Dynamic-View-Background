@@ -12,6 +12,8 @@ A community driven boilerplate of best practices for Home Assistant Lovelace cus
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
+
+![](https://vistr.dev/badge?repo=dotKrad.Dynamic-View-Background)
 ## Support
 
 Hey dude! Help me out for a couple of :beers: or a :coffee:!
