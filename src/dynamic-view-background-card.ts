@@ -73,13 +73,14 @@ export class DynamicViewBackgroundCard extends LitElement {
     const root = document
       .querySelector('home-assistant')
       ?.shadowRoot?.querySelector('home-assistant-main')
-      ?.shadowRoot?.querySelector('app-drawer-layout partial-panel-resolver ha-panel-lovelace')
+      ?.shadowRoot?.querySelector('ha-drawer partial-panel-resolver ha-panel-lovelace')
       ?.shadowRoot?.querySelector('hui-root');
 
-    let obj = root?.shadowRoot?.querySelector('ha-app-layout div#view hui-panel-view') as HTMLElement;
+    let obj = root?.shadowRoot?.querySelector('div#view hui-panel-view') as HTMLElement;
 
-    if (obj === undefined || obj === null)
-      obj = root?.shadowRoot?.querySelector('ha-app-layout div#view hui-view') as HTMLElement;
+    if (obj === undefined || obj === null) {
+      obj = root?.shadowRoot?.querySelector('div#view hui-view') as HTMLElement;
+    }
 
     /**/
     if (obj !== null && obj !== undefined && this._config.entity !== undefined && this._config.entity !== null) {
