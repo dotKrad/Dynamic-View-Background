@@ -25,7 +25,6 @@ console.info(
 // TODO Name your custom element
 @customElement('dynamic-view-background-card')
 export class DynamicViewBackgroundCard extends LitElement {
-
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
     return document.createElement('dynamic-view-background-card-editor') as LovelaceCardEditor;
   }
@@ -71,15 +70,14 @@ export class DynamicViewBackgroundCard extends LitElement {
   }
 
   protected render(): TemplateResult | void {
-
     const root = document
       .querySelector('home-assistant')
       ?.shadowRoot?.querySelector('home-assistant-main')
       ?.shadowRoot?.querySelector('ha-drawer partial-panel-resolver ha-panel-lovelace')
       ?.shadowRoot?.querySelector('hui-root');
 
-    let obj = root?.shadowRoot?.querySelector("hui-view") as HTMLElement
-    //let obj = root?.shadowRoot?.querySelector("hui-view-background") as HTMLElement
+    const obj = root?.shadowRoot?.querySelector('hui-view') as HTMLElement;
+    //let obj = root?.shadowRoot?.querySelector('hui-view-background') as HTMLElement
 
     /**/
     if (obj !== null && obj !== undefined && this.config.entity !== undefined && this.config.entity !== null) {

@@ -1,5 +1,5 @@
 import { LitElement, html, customElement, property, TemplateResult, CSSResult, css } from 'lit-element';
-import { HomeAssistant, fireEvent, LovelaceCardEditor, ActionConfig } from 'custom-card-helpers';
+import { HomeAssistant, fireEvent, LovelaceCardEditor } from 'custom-card-helpers';
 
 import { DynamicViewBackgroundCardConfig } from './types';
 
@@ -28,7 +28,6 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
     this._config = config;
   }
 
-
   get _entity(): string {
     debugger;
     if (this._config) {
@@ -37,7 +36,6 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
 
     return '';
   }
-
 
   get _debug(): boolean {
     if (this._config) {
@@ -54,8 +52,6 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
 
     return false;
   }
-
-
 
   protected render(): TemplateResult | void {
     if (!this.hass) {
@@ -90,7 +86,7 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
                   .configValue=${'entity'}
                 >
                   <paper-listbox slot="dropdown-content" .selected=${entities.indexOf(this._entity)}>
-                    ${entities.map(entity => {
+                  ${entities.map(entity => {
           return html`
                         <paper-item>${entity}</paper-item>
                       `;
@@ -99,15 +95,16 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
                 </paper-dropdown-menu>
               </div>
             `
-        : ''}
+        : ''
+      }
 
-        <div class="option" @click=${this._toggleOption} .option=${'appearance'}>
-          <div class="row">
-            <ha-icon .icon=${`mdi:${options.appearance.icon}`}></ha-icon>
-            <div class="title">${options.appearance.name}</div>
-          </div>
-          <div class="secondary">${options.appearance.secondary}</div>
+        <div class="option" @click=${this._toggleOption} .option = ${'appearance'}>
+  <div class="row" >
+    <ha-icon.icon=${`mdi:${options.appearance.icon}`}> </ha-icon>
+      < div class="title" > ${options.appearance.name} </div>
         </div>
+        < div class="secondary" > ${options.appearance.secondary} </div>
+          </div>
         ${options.appearance.show
         ? html`
               <div class="values">                
@@ -120,9 +117,10 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
                 >
               </div>
             `
-        : ''}
-      </div>
-    `;
+        : ''
+      }
+</div>
+  `;
   }
 
   private _toggleOption(ev): void {
@@ -143,7 +141,7 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
       return;
     }
     const target = ev.target;
-    if (this[`_${target.configValue}`] === target.value) {
+    if (this[`_${target.configValue} `] === target.value) {
       return;
     }
     if (target.configValue) {
@@ -161,32 +159,32 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
 
   static get styles(): CSSResult {
     return css`
-      .option {
-        padding: 4px 0px;
-        cursor: pointer;
-      }
+  .option {
+  padding: 4px 0px;
+  cursor: pointer;
+}
       .row {
-        display: flex;
-        margin-bottom: -14px;
-        pointer-events: none;
-      }
+  display: flex;
+  margin - bottom: -14px;
+  pointer - events: none;
+}
       .title {
-        padding-left: 16px;
-        margin-top: -6px;
-        pointer-events: none;
-      }
+  padding - left: 16px;
+  margin - top: -6px;
+  pointer - events: none;
+}
       .secondary {
-        padding-left: 40px;
-        color: var(--secondary-text-color);
-        pointer-events: none;
-      }
+  padding - left: 40px;
+  color: var(--secondary - text - color);
+  pointer - events: none;
+}
       .values {
-        padding-left: 16px;
-        background: var(--secondary-background-color);
+  padding - left: 16px;
+  background: var(--secondary - background - color);
+}
+ha -switch {
+  padding- bottom: 8px;
       }
-      ha-switch {
-        padding-bottom: 8px;
-      }
-    `;
+`;
   }
 }
