@@ -24,19 +24,13 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
   @property() private _config?: DynamicViewBackgroundCardConfig;
   @property() private _toggle?: boolean;
 
-  public setConfig(config: DynamicViewBackgroundCardConfig): void {
+  public setConfig(config): void {
     this._config = config;
   }
 
-  get _name(): string {
-    if (this._config) {
-      return this._config.name || '';
-    }
-
-    return '';
-  }
 
   get _entity(): string {
+    debugger;
     if (this._config) {
       return this._config.entity || '';
     }
@@ -44,13 +38,6 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
     return '';
   }
 
-  get _show_warning(): boolean {
-    if (this._config) {
-      return this._config.show_warning || false;
-    }
-
-    return false;
-  }
 
   get _debug(): boolean {
     if (this._config) {
@@ -68,29 +55,7 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
     return false;
   }
 
-  get _tap_action(): ActionConfig {
-    if (this._config) {
-      return this._config.tap_action || { action: 'more-info' };
-    }
 
-    return { action: 'more-info' };
-  }
-
-  get _hold_action(): ActionConfig {
-    if (this._config) {
-      return this._config.hold_action || { action: 'none' };
-    }
-
-    return { action: 'none' };
-  }
-
-  get _double_tap_action(): ActionConfig {
-    if (this._config) {
-      return this._config.double_tap_action || { action: 'none' };
-    }
-
-    return { action: 'none' };
-  }
 
   protected render(): TemplateResult | void {
     if (!this.hass) {
@@ -117,7 +82,7 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
           <div class="secondary">${options.required.secondary}</div>
         </div>
         ${options.required.show
-          ? html`
+        ? html`
               <div class="values">
                 <paper-dropdown-menu
                   label="Entity (Required)"
@@ -126,15 +91,15 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
                 >
                   <paper-listbox slot="dropdown-content" .selected=${entities.indexOf(this._entity)}>
                     ${entities.map(entity => {
-                      return html`
+          return html`
                         <paper-item>${entity}</paper-item>
                       `;
-                    })}
+        })}
                   </paper-listbox>
                 </paper-dropdown-menu>
               </div>
             `
-          : ''}
+        : ''}
 
         <div class="option" @click=${this._toggleOption} .option=${'appearance'}>
           <div class="row">
@@ -144,22 +109,8 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
           <div class="secondary">${options.appearance.secondary}</div>
         </div>
         ${options.appearance.show
-          ? html`
-              <div class="values">
-                <paper-input
-                  label="Name (Optional)"
-                  .value=${this._name}
-                  .configValue=${'name'}
-                  @value-changed=${this._valueChanged}
-                ></paper-input>
-                <br />
-                <ha-switch
-                  aria-label=${`Toggle warning ${this._show_warning ? 'off' : 'on'}`}
-                  .checked=${this._show_warning !== false}
-                  .configValue=${'show_warning'}
-                  @change=${this._valueChanged}
-                  >Show Warning?</ha-switch
-                >
+        ? html`
+              <div class="values">                
                 <ha-switch
                   aria-label=${`Toggle error ${this._show_error ? 'off' : 'on'}`}
                   .checked=${this._show_error !== false}
@@ -169,7 +120,7 @@ export class DynamicViewBackgroundCardEditor extends LitElement implements Lovel
                 >
               </div>
             `
-          : ''}
+        : ''}
       </div>
     `;
   }

@@ -32,10 +32,10 @@ const plugins = [
 
 export default [
   {
-    input: 'src/dynamic-view-background-card.ts',
+    input: 'src/index.ts',
     output: {
-      dir: 'dist',
       format: 'es',
+      file: 'dist/dynamic-view-background-card.js'
     },
     plugins: [...plugins],
   },
